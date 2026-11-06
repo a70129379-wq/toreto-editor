@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
-import { films, process, rotating, skills, youtube, type Film } from "../lib/content";
+import { contactEmail, films, formKey, process, rotating, skills, youtube, type Film } from "../lib/content";
 import { LAST, NAV, SCREENS_PER_SHOT, shotIndex, shotU, type Shot } from "../lib/shots";
 import { createWorld, type World } from "../lib/world";
 import Lightbox from "./Lightbox";
 import Mark from "./Mark";
+
+const SENT = "Got it. I'll reply to the address you gave me.";
 
 // Each caption shows while the camera is near its span of shots.
 function Caption({ from, to = from, className = "", children }: { from: Shot; to?: Shot; className?: string; children: React.ReactNode }) {
@@ -133,29 +135,55 @@ export default function Site() {
     if (i >= 0) setFilm(films[i]);
   };
 
+  // Opens the visitor's own email app with their request already written.
+  const openEmail = (data: Record<string, string>) => {
+    const subject = `New project request from ${data.name}`;
+    const body = `Name: ${data.name}\nEmail: ${data.email}\n\n${data.project.slice(0, 1500)}`;
+    const link = document.createElement("a");
+    link.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    link.click();
+    setState("sent");
+    setMessage(`Your email app should open with this ready to send, so just press Send. If it doesn't, email me at ${contactEmail}.`);
+  };
+
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    // Filled only by bots: look successful and send nothing.
+    if (data.company) {
+      setState("sent");
+      setMessage(SENT);
+      form.reset();
+      return;
+    }
+    if (!formKey) {
+      openEmail(data);
+      return;
+    }
     setState("sending");
     setMessage("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          access_key: formKey,
+          subject: `New project request from ${data.name}`,
+          from_name: "Toreto website",
+          name: data.name,
+          email: data.email,
+          message: data.project,
+        }),
       });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setState("sent");
-        setMessage("Got it. I'll reply to the address you gave me.");
-        form.reset();
-      } else {
-        setState("error");
-        setMessage(data.error === "not-connected" ? "The form isn't connected yet, so nothing was sent. Please message me on YouTube." : data.error ?? "That didn't go through. Please try again.");
-      }
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.success) throw new Error(out.message);
+      setState("sent");
+      setMessage(SENT);
+      form.reset();
     } catch {
-      setState("error");
-      setMessage("That didn't go through. Please try again.");
+      // Sending failed, so hand over to email. What they typed stays in the form.
+      openEmail(data);
     }
   };
 

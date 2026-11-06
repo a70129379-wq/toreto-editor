@@ -34,6 +34,11 @@ export const films: Film[] = [
   film("varanasi", "Varanasi Reel", "Event Short", "A crowd and a moment, cut for the feed.", "0:24", "9 / 16", "#ffa63d"),
 ];
 
+// Web3Forms access key: sends project requests to Toreto's inbox. It is safe in public code,
+// because it can only send messages to that inbox.
+export const contactEmail = "a70129379@gmail.com";
+export const formKey = "";
+
 export const rotating = ["Film edits", "Car edits", "Motion graphics", "Colour grades", "Viral reels"];
 
 export const skills = [
