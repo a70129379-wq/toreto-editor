@@ -36,6 +36,7 @@ export const films: Film[] = [
 
 // Web3Forms access key: sends project requests to Toreto's inbox. It is safe in public code,
 // because it can only send messages to that inbox.
+export const siteUrl = "https://toreto-editor.vercel.app";
 export const contactEmail = "a70129379@gmail.com";
 export const formKey = "2e8d7a39-1fbe-4e11-a4e9-5620207db51d";
 

@@ -230,12 +230,20 @@ export default function Site() {
   return (
     <>
       <canvas ref={canvas} className="stage" aria-hidden="true" />
+      <section className="sr" aria-label="Work">
+        <h2>Video edits by Toreto</h2>
+        <ul>
+          {films.map((f) => (
+            <li key={f.id}>{f.title}: {f.discipline}. {f.note}</li>
+          ))}
+        </ul>
+      </section>
       <div className="scroller" style={{ height: `${LAST * SCREENS_PER_SHOT * 100 + 100}vh` }} onClick={onStage} />
 
       <div ref={overlay} className="overlay" onClick={onStage}>
         <Caption from="hero-front" className={`c-hero ${open ? "in" : ""}`}>
           <p className="c-word" key={word}>{rotating[word]}</p>
-          <h1 className="sr">Toreto</h1>
+          <h1 className="sr">Toreto, video editor</h1>
           <p className="c-role">Video editor. Every cut lands.</p>
           <p className="c-hint">Scroll down to see the full website <b aria-hidden="true">↓</b></p>
         </Caption>
