@@ -31,7 +31,7 @@ export const films: Film[] = [
   film("grade", "Cinematic Colour Grade", "Colour", "Sky, leaves and lyrics in one graded mood.", "0:14", "16 / 9", "#3fe0c0"),
   film("viral", "Viral Reel", "Short Form", "Eight seconds, built to be replayed.", "0:08", "9 / 16", "#c44bff"),
   film("intro", "Toreto Intro", "Logo Animation", "My own channel intro.", "0:08", "16 / 9", "#ff4d8d"),
-  film("varanasi", "Varanasi Reel", "Event Short", "A crowd and a moment, cut for the feed.", "0:24", "9 / 16", "#ffa63d"),
+  film("bjp", "BJP Reel", "Political Short", "Big national moments, cut fast for Instagram.", "0:15", "9 / 16", "#ffa63d"),
 ];
 
 // Web3Forms access key: sends project requests to Toreto's inbox. It is safe in public code,
