@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3220",
     "build": "next build",
-    "start": "next start -p 3220",
-    "media": "bash scripts/media.sh"
+    "start": "next start -p 3220"
   },
   "dependencies": {
     "lenis": "^1.3.27",

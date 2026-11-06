@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
-import { films, process, rotating, skills, youtube, type Film } from "@/lib/content";
-import { LAST, NAV, SCREENS_PER_SHOT, shotIndex, shotU, type Shot } from "@/lib/shots";
-import { createWorld, type World } from "@/lib/world";
+import { films, process, rotating, skills, youtube, type Film } from "../lib/content";
+import { LAST, NAV, SCREENS_PER_SHOT, shotIndex, shotU, type Shot } from "../lib/shots";
+import { createWorld, type World } from "../lib/world";
 import Lightbox from "./Lightbox";
 import Mark from "./Mark";
 

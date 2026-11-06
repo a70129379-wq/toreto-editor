@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { films, type Film } from "@/lib/content";
+import { films, type Film } from "../lib/content";
 
 // The glass panel that plays an edit, with every other edit one click away.
 export default function Lightbox({ film, onClose, onPick }: { film: Film; onClose: () => void; onPick: (f: Film) => void }) {
