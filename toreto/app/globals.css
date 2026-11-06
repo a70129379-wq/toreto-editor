@@ -32,7 +32,9 @@ ol, ul { list-style: none; }
 .c-word { font-weight: 600; font-size: clamp(1rem, 0.85rem + 0.6vw, 1.4rem); margin-bottom: 0.5rem; animation: wordIn 0.5s var(--ease); }
 @keyframes wordIn { from { opacity: 0; transform: translateY(10px); } }
 .c-role { margin-top: 1rem; font-size: clamp(1rem, 0.85rem + 0.6vw, 1.4rem); }
-.c-hint { position: absolute; right: var(--gutter); bottom: clamp(1.4rem, 5vh, 3rem); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.c-hint { position: absolute; right: var(--gutter); bottom: clamp(1.4rem, 5vh, 3rem); display: flex; align-items: center; gap: 0.55rem; padding: 0.6rem 1rem; font-size: clamp(0.86rem, 0.8rem + 0.25vw, 1rem); font-weight: 600; color: #fff; background: rgba(8, 8, 12, 0.72); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 999px; }
+.c-hint b { color: var(--red); font-size: 1.1em; animation: hintBob 1.5s ease-in-out infinite; }
+@keyframes hintBob { 50% { transform: translateY(4px); } }
 
 .c-big { display: flex; flex-direction: column; justify-content: center; padding: 5rem var(--gutter) 2rem; }
 .c-big h2 { font-size: clamp(2.3rem, 1.1rem + 4.8vw, 6.4rem); font-weight: 700; line-height: 0.98; letter-spacing: -0.05em; max-width: 13em; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 4px 34px rgba(0, 0, 0, 0.6); }
@@ -161,7 +163,7 @@ ol, ul { list-style: none; }
 
 @media (max-width: 760px) {
   .nav-cta { display: none; }
-  .c-hint { display: none; }
+  .c-hint { position: static; align-self: flex-start; margin-top: 0.8rem; }
   .c-process ol { grid-template-columns: 1fr 1fr; }
   .c-process li { padding: 0.85rem; }
   .c-process small { font-size: 0.78rem; }

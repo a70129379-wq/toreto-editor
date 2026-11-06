@@ -237,7 +237,7 @@ export default function Site() {
           <p className="c-word" key={word}>{rotating[word]}</p>
           <h1 className="sr">Toreto</h1>
           <p className="c-role">Video editor. Every cut lands.</p>
-          <p className="c-hint">Scroll to fly</p>
+          <p className="c-hint">Scroll down to see the full website <b aria-hidden="true">↓</b></p>
         </Caption>
 
         <Caption from="hero-side" className="c-big c-left c-narrow">
