@@ -7,6 +7,7 @@ const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: 
 const dela = Dela_Gothic_One({ subsets: ["latin"], weight: "400", variable: "--font-dela" });
 
 export const metadata: Metadata = {
+  verification: { google: "JdibmJ0DBdst4--AMCoTYnRfe3ULtlirgdHJVY00B1Q" },
   title: "Toreto | Video Editor",
   description: "Toreto is a video editor. Film edits, car edits, motion graphics, colour grades and viral reels.",
 };
